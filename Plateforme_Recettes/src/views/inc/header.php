@@ -28,31 +28,8 @@
                     <div class="classynav">
                         <ul>
                             <li class="active"><a href="index.html">Home</a></li>
-                           
-                     <!--       <li><a href="#">Catagorys</a>
-                                <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="blog-post.html">Blog Post</a></li>
-                                        <li><a href="receipe-post.html">Receipe Post</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="elements.html">Elements</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="blog-post.html">Blog Post</a></li>
-                                    </ul>
-                                    <div class="single-mega cn-col-4">
-                                        <div class="receipe-slider owl-carousel">
-                                            <a href="#"><img src="assets/images/bg-img/bg1.jpg" alt=""></a>
-                                            <a href="#"><img src="assets/images/bg-img/bg6.jpg" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>-->
                             <li><a href="index.php?page=recettes">Receipies</a></li>
+                            <li><a href="index.php?page=createRecette">Create Receipie</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->

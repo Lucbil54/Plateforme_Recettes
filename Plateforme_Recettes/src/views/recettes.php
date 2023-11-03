@@ -17,7 +17,7 @@ $recettesController = new RecettesController();
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Home</title>
+    <title>Recettes</title>
 
     <!-- Favicon -->
     <link rel="icon" href="assets/images/core-img/favicon.ico">
@@ -36,11 +36,6 @@ $recettesController = new RecettesController();
         <i class="circle-preloader"></i>
         <img src="img/core-img/salad.png" alt="">
     </div>
-
-   
-
-
-    <!-- ##### Breadcumb Area End ##### -->
 
     <div class="receipe-post-area section-padding-80">
 
@@ -65,7 +60,23 @@ $recettesController = new RecettesController();
     </div>
 
     <!-- Affichage des recettes -->
-       
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>The Receipies</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                
+            <?php echo $recettesController->DisplayRecettes(); ?>
+               
+            </div>
+        </div>
+    </section>
 
     <?php require_once "inc/footer.php"; ?>
 </body>

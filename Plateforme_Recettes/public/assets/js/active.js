@@ -122,9 +122,9 @@
     }
 
     // :: 9.0 nice Select Active Code
-    if ($.fn.niceSelect) {
-        $('select').niceSelect();
-    }
+    // if ($.fn.niceSelect) {
+    //     $('select').niceSelect();
+    // }
 
     // :: 10.0 wow Active Code
     if (browserWindow.width() > 767) {

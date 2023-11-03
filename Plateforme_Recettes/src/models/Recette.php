@@ -17,7 +17,10 @@ class Recette
         return ConnexionDB::DbRun($sql)->fetchAll(PDO::FETCH_OBJ);
     } 
 
-    public static function AddRecette($titre, $tempsCuisson, $image, $idCategorie){
-
+    public static function AddRecette($titre, $tempsCuisson, $image){
+        $sql = "INSERT INTO Recette (titre, tempsCuisson, cheminPhoto) VALUES (?,?,?) ";
+        $param = [$titre, $tempsCuisson, $image];
+ 
+        ConnexionDB::DbRun($sql, $param);
     }
 }

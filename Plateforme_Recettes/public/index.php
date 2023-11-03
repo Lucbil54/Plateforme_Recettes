@@ -13,6 +13,9 @@ switch ($page) {
     case 'recettes':
         require_once(__DIR__ . "/../src/controllers/recettesController.php");
         break;
+    case 'createRecette':
+        require_once(__DIR__ . "/../src/controllers/createRecetteController.php");
+        break;
     default:
         require_once(__DIR__ . "/../src/controllers/homeController.php");
         break;

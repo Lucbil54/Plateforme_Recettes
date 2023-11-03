@@ -14,11 +14,10 @@ class RecettesController
         return $this->recettes;
     }
 
-    public function setRecettes($recettes)
+    public function setRecettes($arrRecettes)
     {
-        $this->recettes = $recettes;
+        $this->recettes = $arrRecettes;
     }
-
 
     public function __construct()
     {
@@ -46,7 +45,6 @@ class RecettesController
 
         // Appeler la fonction qui récupère les recettes
         $recettes = Recette::GetRecettes($sql);
-        
         $arrRecette = [];
         if ($idRecettes != null) {
             foreach ($idRecettes as $idRecette) {
@@ -57,6 +55,11 @@ class RecettesController
                 }
             }
         }
+        else{
+            foreach ($recettes as $recette) {
+                array_push($arrRecette, $recette);
+            }
+        }
 
         $this->setRecettes($arrRecette);
     }
@@ -64,20 +67,31 @@ class RecettesController
     public function DisplayRecettes()
     {
         $recettes = $this->getRecettes();
-
+        $output = "";
+        
         if (count($recettes) > 0) {
-
-
             foreach ($recettes as $recette) {
                 // Affichage des recettes
+                $output .= "<div class='col-12 col-sm-6 col-lg-4'>
+                <div class='single-best-receipe-area mb-30'>
+                    <img src='assets/imgUpload/$recette->cheminPhoto' alt=''>
+                    <div class='receipe-content'>
+                        <a href='index.php?page=viewRecette&idRecette=$recette->idRecette'>
+                            <h5>$recette->titre</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>";
             }
         } else {
-            return "Aucune recette trouvé.";
+            $output .= "Aucune recette trouvé.";
         }
+
+        return $output;
     }
 
-    public function DisplayOneRecette(){
-
+    public function DisplayOneRecette()
+    {
     }
 }
 
