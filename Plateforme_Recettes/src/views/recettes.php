@@ -1,8 +1,23 @@
 <?php 
-require_once __DIR__ . "/../controllers/recettesController.php";
 require_once __DIR__ . "/../controllers/utilitaireController.php";
 
-$recettesController = new RecettesController();
+
+$recettesController = SessionManager::retrieveRecettesController();
+
+$btnSearch = filter_input(INPUT_POST, "btnSearch");
+if (isset($btnSearch)) {
+    $search = filter_input(INPUT_POST, "search");
+    $categorie = filter_input(INPUT_POST, "selectCategorie");
+    $recettesController->Filters($search, $categorie);
+
+    // Enregistrez l'objet mis à jour dans la session
+    SessionManager::storeRecettesController($recettesController);
+}
+
+$btnReset = filter_input(INPUT_POST, "btnReset");
+if (isset($btnReset)) {
+    session_destroy();
+}
 
 ?>
 
@@ -45,19 +60,23 @@ $recettesController = new RecettesController();
                 <form action="#" method="post">
                     <div class="row">
                         <div class="col-12 col-lg-3">
-                            <?php echo DisplaySelectCategories(); ?>
+                            <?php echo DisplaySelectCategorie(); ?>
                         </div>
                         <div class="col-12 col-lg-3">
                             <input type="search" name="search" placeholder="Search Receipies">
                         </div>
                         <div class="col-12 col-lg-3 text-right">
-                            <button type="submit" class="btn delicious-btn">Search</button>
+                            <button type="submit" name="btnSearch" class="btn delicious-btn">Search</button>
+                        </div>
+                        <div class="col-12 col-lg-3 text-right">
+                            <button type="submit" name="btnReset" class="btn delicious-btn">Reset</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
 
     <!-- Affichage des recettes -->
     <section class="best-receipe-area">

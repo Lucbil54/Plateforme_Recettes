@@ -7,13 +7,11 @@ if (isset($btnCreate)) {
     $tempsCuisson = filter_input(INPUT_POST,"tempsCuisson");
     $ingredients = $_POST["selectIngredients"];
     $etapes = filter_input(INPUT_POST, "etapes");
-    $categories = $_POST["selectCategories"];
+    $categorie = filter_input(INPUT_POST,"selectCategories");
     
-    $image = $_FILES["image"];      
-    
-    var_dump($categories);
+    $image = $_FILES["image"];           
 
-    CreateRecetteController::CreateRecette($titre, $tempsCuisson, $etapes, $ingredients, $categories, $image);
+    CreateRecetteController::CreateRecette($titre, $tempsCuisson, $etapes, $ingredients, $categorie, $image);
 }
 
 ?>
@@ -53,26 +51,26 @@ if (isset($btnCreate)) {
     <h1>Créer une recette</h1>
     <form method="post" enctype="multipart/form-data">
         <label for="titre">Nom de la recette:</label>
-        <input type="text" id="titre" name="titre" required><br><br>
+        <input type="text" id="titre" name="titre" value="<?=$old_recette->titre;?>"  required><br><br>
 
         <label for="tempsCuisson">Temps de cuisson:</label>
-        <input type="time" id="tempsCuisson" name="tempsCuisson" required><br><br>
+        <input type="time" id="tempsCuisson" name="tempsCuisson" value="<?=$old_recette->tempsCuisson;?>" required><br><br>
 
         <label for="ingredients">Ingrédients:</label>
-        <?php echo DisplaySelectMutipleIngredients(); ?>
+        <?php echo DisplaySelectedIngredientsOfRecette($idRecette); ?>
         
 
         <label for="etapes">Etapes:</label>
-        <textarea id="etapes" name="etapes" rows="4" cols="50" required></textarea><br><br>
+        <textarea id="etapes" name="etapes" rows="4" cols="50" required><?=$old_etapes->description;?></textarea><br><br>
 
-        <label for="categorie">catégories:</label>
-        <?php echo DisplaySelectMultipleCategories(); ?>
+        <label for="categorie">Catégories:</label>
+        <?php echo DisplaySelectedCategoriesOfRecette($idRecette); ?>
 
         <label for="image">Sélectionnez une image :</label>
         <input type="file" name="image" accept="image/*" required>
 
 
-        <input type="submit" name="btnCreate" value="Créer la recette">
+        <input type="submit" name="btnUpdate" value="Modifier la recette">
     </form>
        
 

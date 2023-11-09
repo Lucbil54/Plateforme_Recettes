@@ -23,4 +23,29 @@ class Recette
  
         ConnexionDB::DbRun($sql, $param);
     }
+
+    public static function GetRecettesRecently(){
+        $sql = "SELECT * FROM Recette ORDER BY idRecette DESC LIMIT 3";
+
+        return ConnexionDB::DbRun($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function DeleteRecette($idRecette, $img){
+        $sql = "DELETE FROM Recette WHERE idRecette = :idRecette";
+        $param = [":idRecette" => $idRecette];
+        
+        if (unlink($img)) {
+            ConnexionDB::DbRun($sql, $param);
+        }
+        
+    }
+
+    public static function UpdateRecette($idRecette, $titre, $tempsCuisson, $image){
+        $sql = "UPDATE Recette SET titre = :titre, tempsCuisson = :tempsCuisson, cheminPhoto = :cheminPhoto WHERE idRecette = :idRecette";
+        $param = [":titre" => $titre, ":tempsCuisson" => $tempsCuisson, ":cheminPhoto" => $image, ":idRecette" => $idRecette];
+ 
+        ConnexionDB::DbRun($sql, $param);
+    }
+
+    
 }

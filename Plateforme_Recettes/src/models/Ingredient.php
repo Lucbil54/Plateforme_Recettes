@@ -29,5 +29,12 @@ class Ingredient
         $sql = "SELECT idIngredient FROM RecetteIngredient WHERE idRecette = :idRecette";
         $param = [":idRecette" => $idRecette];
         return ConnexionDB::DbRun($sql, $param)->fetchAll(PDO::FETCH_OBJ);
-    } 
+    }
+
+    public static function DeleteAllIngredientsOfRecette($idRecette){
+        $sql = "DELETE FROM RecetteIngredient WHERE idRecette = :idRecette";
+        $param = [":idRecette" => $idRecette];
+ 
+        ConnexionDB::DbRun($sql, $param);
+    }
 }

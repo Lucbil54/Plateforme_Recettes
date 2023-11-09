@@ -27,7 +27,7 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="index.php">Home</a></li>
                             <li><a href="index.php?page=recettes">Receipies</a></li>
                             <li><a href="index.php?page=createRecette">Create Receipie</a></li>
                         </ul>
