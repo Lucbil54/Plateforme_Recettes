@@ -1,17 +1,16 @@
 <?php 
 
-$btnCreate = filter_input(INPUT_POST, "btnCreate");
+$btnUpdate = filter_input(INPUT_POST, "btnUpdate");
 
-if (isset($btnCreate)) {
+if (isset($btnUpdate)) {
     $titre = filter_input(INPUT_POST, "titre");
     $tempsCuisson = filter_input(INPUT_POST,"tempsCuisson");
-    $ingredients = $_POST["selectIngredients"];
     $etapes = filter_input(INPUT_POST, "etapes");
-    $categorie = filter_input(INPUT_POST,"selectCategories");
+    $selectedCategories = filter_input(INPUT_POST, 'selectCategories', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+    $selectedIngredients = filter_input(INPUT_POST, 'selectIngredients', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
     
-    $image = $_FILES["image"];           
-
-    CreateRecetteController::CreateRecette($titre, $tempsCuisson, $etapes, $ingredients, $categorie, $image);
+    $image = $_FILES["image"];   
+    UpdateRecetteController::UpdateRecette($idRecette, $titre, $tempsCuisson, $etapes, $selectedIngredients, $selectedCategories, $image);
 }
 
 ?>
@@ -48,7 +47,7 @@ if (isset($btnCreate)) {
         <img src="img/core-img/salad.png" alt="">
     </div>
 
-    <h1>Créer une recette</h1>
+    <h1>Modifier une recette</h1>
     <form method="post" enctype="multipart/form-data">
         <label for="titre">Nom de la recette:</label>
         <input type="text" id="titre" name="titre" value="<?=$old_recette->titre;?>"  required><br><br>

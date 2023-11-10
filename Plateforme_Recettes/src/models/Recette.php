@@ -30,14 +30,11 @@ class Recette
         return ConnexionDB::DbRun($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function DeleteRecette($idRecette, $img){
+    public static function DeleteRecette($idRecette){
         $sql = "DELETE FROM Recette WHERE idRecette = :idRecette";
         $param = [":idRecette" => $idRecette];
         
-        if (unlink($img)) {
-            ConnexionDB::DbRun($sql, $param);
-        }
-        
+        ConnexionDB::DbRun($sql, $param);
     }
 
     public static function UpdateRecette($idRecette, $titre, $tempsCuisson, $image){

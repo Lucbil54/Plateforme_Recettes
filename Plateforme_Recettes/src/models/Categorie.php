@@ -30,4 +30,18 @@ class Categorie
 
        ConnexionDB::DbRun($sql, $param);
     } 
+
+    public static function RemoveCategorieOfRecette($idRecette, $idCategorie){
+        $sql = "DELETE FROM RecetteCategorie WHERE idRecette = :idRecette AND idCategorie = :idCategorie";
+        $param = [":idRecette" => $idRecette, ":idCategorie" => $idCategorie];
+ 
+        ConnexionDB::DbRun($sql, $param);
+    }
+
+    public static function RemoveAllCategoriesOfRecette($idRecette){
+        $sql = "DELETE FROM RecetteCategorie WHERE idRecette = :idRecette";
+        $param = [":idRecette" => $idRecette];
+ 
+        ConnexionDB::DbRun($sql, $param);
+    }
 }

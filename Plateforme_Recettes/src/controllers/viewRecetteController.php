@@ -22,9 +22,25 @@ if (isset($idRecette)) {
     $btnUpdate = filter_input(INPUT_POST, "btnUpdate");
 
     if (isset($btnDelete)) {
-        Recette::DeleteRecette($idRecette, "assets/imgUpload/" . $recette->cheminPhoto);
-        header("Location: index.php");
-        exit;
+        try {
+            ConnexionDB::Db()->beginTransaction();
+
+            Ingredient::RemoveAllIngredientsFromRecette($idRecette);
+            Categorie::RemoveAllCategoriesOfRecette($idRecette);
+            Etape::DeleteEtapesOfRecette($idRecette);
+            Recette::DeleteRecette($idRecette);
+            unlink("assets/imgUpload/" . $recette->cheminPhoto);
+
+            ConnexionDB::Db()->commit();
+
+            header("Location: index.php");
+            exit;
+        } catch (PDOException $e) {
+            ConnexionDB::Db()->rollBack();
+            echo "Erreur PDO : " . $e->getMessage() . "<br>";
+            echo "Code d'erreur : " . $e->getCode();
+        }
+        
     }
 
     if (isset($btnUpdate)) {

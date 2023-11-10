@@ -62,14 +62,14 @@ function DisplaySelectedCategoriesOfRecette($idRecette)
 
 
         $checkboxHTML .= "<div class='custom-control custom-checkbox'>";
-        $checkboxHTML .= "<input type='checkbox' class='custom-control-input' id='checkboxIngredient_$categorie->idCategorie'name='selectIngredients[]' value='$categorie->idCategorie'";
+        $checkboxHTML .= "<input type='checkbox' class='custom-control-input' id='checkboxCategorie_$categorie->idCategorie'name='selectCategories[]' value='$categorie->idCategorie'";
 
         if ($selected) {
             $checkboxHTML .= " checked";
         }
 
         $checkboxHTML .= ">";
-        $checkboxHTML .= "<label class='custom-control-label' for='checkboxIngredient_$categorie->idCategorie'>$categorie->nom</label>";
+        $checkboxHTML .= "<label class='custom-control-label' for='checkboxCategorie_$categorie->idCategorie'>$categorie->nom</label>";
         $checkboxHTML .= "</div>";
     }
 
