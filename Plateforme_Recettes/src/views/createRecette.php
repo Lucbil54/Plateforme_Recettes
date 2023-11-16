@@ -10,8 +10,6 @@ if (isset($btnCreate)) {
     $categories = $_POST["selectCategories"];
     
     $image = $_FILES["image"];      
-    
-    var_dump($categories);
 
     CreateRecetteController::CreateRecette($titre, $tempsCuisson, $etapes, $ingredients, $categories, $image);
 }

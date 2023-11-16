@@ -12,7 +12,6 @@ class UpdateRecetteController
 {
     public static function UpdateRecette($idRecette, $titre, $tempsCuisson, $etapes, $selectedIngredients, $selectedCategories, $file)
     {
-
         $fileName = $file['name'];
         $fileName = RenameFileRandom($fileName);
         $file_tmp = $file['tmp_name'];
@@ -103,6 +102,15 @@ class UpdateRecetteController
         try {
             ConnexionDB::Db()->beginTransaction();
 
+            foreach ($ingredientsToAdd as $newIngredientId) {
+                var_dump($idRecette, $newIngredientId);
+                Ingredient::AttributeIngredientForRecettes($idRecette, $newIngredientId);
+            }
+
+            foreach ($ingredientsToRemove as $oldIngredientId) {
+                Ingredient::RemoveIngredientFromRecette($idRecette, $oldIngredientId->idIngredient);
+            }
+
             // Mettre à jour la base de données avec les nouvelles associations
             foreach ($categoriesToAdd as $newCategoryId) {
                 
@@ -112,14 +120,6 @@ class UpdateRecetteController
             foreach ($categoriesToRemove as $oldCategoryId) {
                 var_dump($oldCategoryId->idCategorie);
                 Categorie::RemoveCategorieOfRecette($idRecette, $oldCategoryId->idCategorie);
-            }
-
-            foreach ($ingredientsToAdd as $newIngredientId) {
-                Ingredient::AttributeIngredientForRecettes($idRecette, $newIngredientId);
-            }
-
-            foreach ($ingredientsToRemove as $oldIngredientId) {
-                Ingredient::RemoveIngredientFromRecette($idRecette, $oldIngredientId->idIngredient);
             }
 
             // Modifie l'étape
